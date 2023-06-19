@@ -1,2 +1,4 @@
 encore.dev v1.20.0 h1:VM/L8gaoUBnnUxhgG05ntc9LAMfjqMw0I3sFSurjKzM=
 encore.dev v1.20.0/go.mod h1:XdWK6bKKAVzutmOKpC5qzalDQJLNfRCF/YCgA7OUZ3E=
+golang.org/x/text v0.10.0 h1:UpjohKhiEgNc0CSauXmwYftY1+LlaC75SJwh0SgCX58=
+golang.org/x/text v0.10.0/go.mod h1:TvPlkZtksWOMsz7fbANvkp4WM8x/WCo/om8BMLbz+aE=
