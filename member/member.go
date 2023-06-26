@@ -11,6 +11,7 @@ type Response struct {
 // Returns all members
 // encore:api public path=/members method=GET
 func Members(ctx context.Context) (*Response, error) {
-	msg := &Response{Members: "All Members "}
+	var members string = crawlMembers()
+	msg := &Response{Members: members}
 	return msg, nil
 }
