@@ -10,7 +10,7 @@ type Response struct {
 
 // Returns all members
 // encore:api public path=/members method=GET
-func World(ctx context.Context) (*Response, error) {
+func Members(ctx context.Context) (*Response, error) {
 	msg := &Response{Members: "All Members "}
 	return msg, nil
 }
