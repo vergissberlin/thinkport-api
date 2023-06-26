@@ -24,17 +24,27 @@ type SingleResponse struct {
 	Member MemberStruct `json:"member"`
 }
 
-var members []MemberStruct
+var members map[string]MemberStruct
 
 func init() {
 	// Call getMembers() once and cache result
-	members = getMembers()
+	members = make(map[string]MemberStruct)
+	for _, member := range getMembers() {
+		members[strings.ToLower(member.Name)] = member
+	}
 }
 
-// Returns all members
+// Returns all members sorted by name
 // encore:api public path=/members method=GET
 func Members(ctx context.Context) (*ListResponse, error) {
-	msg := &ListResponse{Members: members}
+	msg := &ListResponse{Members: make([]MemberStruct, 0, len(members))}
+	for _, member := range members {
+		msg.Members = append(msg.Members, member)
+	}
+
+	// Sort members by name
+	msg.Members = sortMembers(msg.Members)
+
 	return msg, nil
 }
 
@@ -45,16 +55,9 @@ func Member(ctx context.Context, name string) (*SingleResponse, error) {
 	// Lowercase name parameter
 	name = strings.ToLower(name)
 
-	// Use map to lookup member by name
-	memberMap := make(map[string]MemberStruct)
-	for _, member := range members {
-		memberMap[strings.ToLower(member.Name)] = member
-	}
-
-	// Return member from map
-	if member, ok := memberMap[name]; ok {
+	// Lookup member directly in members map
+	if member, ok := members[name]; ok {
 		msg := &SingleResponse{Member: member}
-
 		return msg, nil
 	}
 

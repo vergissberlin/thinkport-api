@@ -53,9 +53,6 @@ func getMembers() []MemberStruct {
 		members = append(members, v)
 	}
 
-	// Sort members by name
-	members = sortMembers(members)
-
 	return members
 
 }
