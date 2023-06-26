@@ -2,6 +2,7 @@ package member
 
 import (
 	"context"
+	"strings"
 )
 
 type MemberStruct struct {
@@ -12,7 +13,7 @@ type MemberStruct struct {
 }
 
 type MembersStruct struct {
-	Members []MemberStruct `json:"members"`
+	Members []MemberStruct
 }
 
 type ListResponse struct {
@@ -33,12 +34,6 @@ func init() {
 // Returns all members
 // encore:api public path=/members method=GET
 func Members(ctx context.Context) (*ListResponse, error) {
-
-	var memberPointers []*MemberStruct
-	for i := range members {
-		memberPointers = append(memberPointers, &members[i])
-	}
-
 	msg := &ListResponse{Members: members}
 	return msg, nil
 }
@@ -46,10 +41,14 @@ func Members(ctx context.Context) (*ListResponse, error) {
 // Returns a member
 // encore:api public path=/member/:name method=GET
 func Member(ctx context.Context, name string) (*SingleResponse, error) {
+
+	// Lowercase name parameter
+	name = strings.ToLower(name)
+
 	// Use map to lookup member by name
 	memberMap := make(map[string]MemberStruct)
 	for _, member := range members {
-		memberMap[member.Name] = member
+		memberMap[strings.ToLower(member.Name)] = member
 	}
 
 	// Return member from map
