@@ -2,9 +2,9 @@
 
 Get data from Thinkport GmbH, Germany. It includes the following services:
 
-[x] Memebers
-[x] Events
-[x] News
+- [x] Memebers
+- [ ] Events
+- [ ] News
 
 ## Usage
 
