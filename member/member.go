@@ -5,24 +5,22 @@ import (
 )
 
 type MemberStruct struct {
-	Name     string
-	Position string
-	Email    string
-	Linkedin string
+	Name     string `json:"name"`
+	Position string `json:"position"`
+	Email    string `json:"email"`
+	Linkedin string `json:"linkedin"`
 }
 
 type MembersStruct struct {
-	Members []MemberStruct
+	Members []MemberStruct `json:"members"`
 }
 
 type ListResponse struct {
-	Members struct {
-		Members []*MemberStruct `json:"members"`
-	} `json:"members"`
+	Members []MemberStruct `json:"members"`
 }
 
 type SingleResponse struct {
-	Member MemberStruct `json:"MemberStruct"`
+	Member MemberStruct `json:"member"`
 }
 
 var members []MemberStruct
@@ -35,23 +33,13 @@ func init() {
 // Returns all members
 // encore:api public path=/members method=GET
 func Members(ctx context.Context) (*ListResponse, error) {
-	// Add a member manually to the slice
-	members = append(members, MemberStruct{
-		Name:     "John Doe",
-		Position: "Software Engineer",
-		Email:    "dirk@dirk.de",
-		Linkedin: "https://www.linkedin.com/in/dirk/",
-	})
 
 	var memberPointers []*MemberStruct
 	for i := range members {
 		memberPointers = append(memberPointers, &members[i])
 	}
 
-	msg := &ListResponse{Members: struct {
-		Members []*MemberStruct `json:"members"`
-	}{Members: memberPointers}}
-
+	msg := &ListResponse{Members: members}
 	return msg, nil
 }
 
