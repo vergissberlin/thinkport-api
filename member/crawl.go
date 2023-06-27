@@ -28,11 +28,11 @@ func getMembers() []MemberStruct {
 			// Append member to slice of members if not empty
 			m[e.ChildText(".lae-title")] = MemberStruct{
 				Name:     e.ChildText(".lae-title"),
-				Position: e.ChildText(".lae-position"),
+				Position: e.ChildText(".lae-team-member-position"),
+				Details:  e.ChildText(".lae-team-member-details"),
 				Email:    mail,
 				Linkedin: e.ChildAttr("a[href^=https://www.linkedin.com]", "href"),
 			}
-
 		}
 	})
 

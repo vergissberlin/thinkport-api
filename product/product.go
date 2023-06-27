@@ -8,7 +8,7 @@ import (
 type TrainingStruct struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	Category string `json:"category"`
+	Category    string `json:"category"`
 	Link        string `json:"link"`
 }
 
@@ -32,11 +32,12 @@ func init() {
 	for _, training := range getTrainings() {
 		trainings[strings.ToLower(training.Name)] = training
 	}
+
 }
 
 // Returns all trainings sorted by name
 // encore:api public path=/product/trainings method=GET
-func Trainings(ctx context.Context) (*TrainingListResponse, error) {
+func Trainings(ctx context.Context) *TrainingListResponse {
 	msg := &TrainingListResponse{Trainings: make([]TrainingStruct, 0, len(trainings))}
 	for _, training := range trainings {
 		msg.Trainings = append(msg.Trainings, training)
@@ -45,7 +46,7 @@ func Trainings(ctx context.Context) (*TrainingListResponse, error) {
 	// Sort trainings by name
 	msg.Trainings = sortTrainings(msg.Trainings)
 
-	return msg, nil
+	return msg
 }
 
 // Returns a training

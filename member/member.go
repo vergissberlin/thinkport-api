@@ -8,6 +8,7 @@ import (
 type MemberStruct struct {
 	Name     string `json:"name"`
 	Position string `json:"position"`
+	Details string `json:"details"`
 	Email    string `json:"email"`
 	Linkedin string `json:"linkedin"`
 }
