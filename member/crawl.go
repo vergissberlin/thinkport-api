@@ -6,6 +6,8 @@ import (
 	"github.com/gocolly/colly"
 )
 
+const urlMembers = "https://thinkport.digital/thinkport-cloud-experten-uber-uns/"
+
 // Returns an array of Members crawled from a website
 func getMembers() []MemberStruct {
 
@@ -38,7 +40,7 @@ func getMembers() []MemberStruct {
 		fmt.Println("Visiting", r.URL)
 	})
 
-	c.Visit("https://thinkport.digital/thinkport-cloud-experten-uber-uns/")
+	c.Visit(urlMembers)
 
 	// Remove empty members
 	for k, v := range m {
