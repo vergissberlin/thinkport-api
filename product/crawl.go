@@ -2,18 +2,24 @@ package product
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	"encore.dev/metrics"
 	"github.com/gocolly/colly"
 )
 
-const urlProductTrainings = "https://thinkport.digital/cloud-trainings-workshops/"
+type Labels struct {
+	Success bool
+}
 
-var RequestsMade = metrics.NewCounter[uint64]("request_member", metrics.CounterConfig{})
+var CrawlRequests = metrics.NewCounterGroup[Labels, uint64]("crawl_requests", metrics.CounterConfig{})
+
+const urlProductTrainings = "https://thinkport.digital/cloud-trainings-workshops/"
 
 // Returns an array of Trainings crawled from a website
 func getTrainings() []TrainingStruct {
+	var success bool
 	c := colly.NewCollector()
 	m := make(map[string]TrainingStruct)
 
@@ -41,13 +47,18 @@ func getTrainings() []TrainingStruct {
 
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting", r.URL)
-		RequestsMade.Increment()
 	})
 
-	var err = c.Visit(urlProductTrainings)
+	err := c.Visit(urlProductTrainings)
 	if err != nil {
-		fmt.Println("Error: ", err)
+		log.Println("Error: ", err)
+		success = false
+	} else {
+		log.Println("Trainings crawled: ", len(m))
+		success = true
 	}
+
+	CrawlRequests.With(Labels{Success: success}).Increment()
 
 	// Convert trainings as array
 	trainings := make([]TrainingStruct, 0, len(m))

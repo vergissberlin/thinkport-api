@@ -1,18 +1,23 @@
 package member
 
 import (
-	"fmt"
+	"log"
 
 	"encore.dev/metrics"
 	"github.com/gocolly/colly"
 )
 
-const urlMembers = "https://thinkport.digital/thinkport-cloud-experten-uber-uns/"
+type Labels struct {
+	Success bool
+}
 
-var RequestsMade = metrics.NewCounter[uint64]("request_member", metrics.CounterConfig{})
+var CrawlRequests = metrics.NewCounterGroup[Labels, uint64]("crawl_requests", metrics.CounterConfig{})
+
+const urlMembers = "https://thinkport.digital/thinkport-cloud-experten-uber-uns/"
 
 // Returns an array of Members crawled from a website
 func getMembers() []MemberStruct {
+	var success bool
 
 	c := colly.NewCollector()
 	memberCount := 0
@@ -40,11 +45,19 @@ func getMembers() []MemberStruct {
 	})
 
 	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting", r.URL)
-		RequestsMade.Increment()
+		log.Println("Visiting", r.URL)
 	})
 
-	c.Visit(urlMembers)
+	err := c.Visit(urlMembers)
+
+	if err != nil {
+		log.Println("Error: ", err)
+		success = false
+	} else {
+		log.Println("Members crawled: ", memberCount)
+	}
+
+	CrawlRequests.With(Labels{Success: success}).Increment()
 
 	// Remove empty members
 	for k, v := range m {

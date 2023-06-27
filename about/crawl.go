@@ -8,13 +8,18 @@ import (
 	"github.com/gocolly/colly"
 )
 
-const urlAboutLocations = "https://thinkport.digital/kontaktieren-3/"
+type Labels struct {
+	Success bool
+}
 
-var RequestsMade = metrics.NewCounter[uint64]("request_about", metrics.CounterConfig{})
+var CrawlRequests = metrics.NewCounterGroup[Labels, uint64]("crawl_requests", metrics.CounterConfig{})
+
+const urlAboutLocations = "https://thinkport.digital/kontaktieren-3/"
 
 // body > div.elementor.elementor-7608 > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-6634598.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default > div > div > div > div > div > section > div > div > div.elementor-column.elementor-col-25.elementor-inner-column.elementor-element.elementor-element-05ba45e > div > div > div.elementor-element.elementor-element-055f9c6.elementor-widget.elementor-widget-heading > div > h2
 // Returns an array of Locations crawled from a website
 func getLocations() []LocationStruct {
+	var success bool
 	c := colly.NewCollector()
 	m := make(map[string]LocationStruct)
 
@@ -43,14 +48,18 @@ func getLocations() []LocationStruct {
 
 	c.OnRequest(func(r *colly.Request) {
 		log.Println("Visiting", r.URL)
-		RequestsMade.Increment()
 	})
 
 	var err = c.Visit(urlAboutLocations)
 	if err != nil {
 		log.SetPrefix("Error: ")
 		log.Println(err)
+		success = false
+	} else {
+		log.Println("Locations crawled: ", len(m))
+		success = true
 	}
+	CrawlRequests.With(Labels{Success: success}).Increment()
 
 	// Convert locations as array
 	locations := make([]LocationStruct, 0, len(m))
