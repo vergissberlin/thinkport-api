@@ -22,7 +22,7 @@ func TestTrainings(t *testing.T) {
 		{Name: "C"},
 	}
 
-	result := Trainings(context.Background())
+	result, _ := Trainings(context.Background())
 
 	if len(result.Trainings) != len(expected) {
 		t.Errorf("Expected %d trainings, got %d", len(expected), len(result.Trainings))

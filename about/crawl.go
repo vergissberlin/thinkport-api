@@ -1,7 +1,7 @@
 package about
 
 import (
-	"fmt"
+	"log"
 	"strings"
 
 	"github.com/gocolly/colly"
@@ -39,12 +39,13 @@ func getLocations() []LocationStruct {
 	})
 
 	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting", r.URL)
+		log.Println("Visiting", r.URL)
 	})
 
 	var err = c.Visit(urlAboutLocations)
 	if err != nil {
-		fmt.Println("Error: ", err)
+		log.SetPrefix("Error: ")
+		log.Println(err)
 	}
 
 	// Convert locations as array
