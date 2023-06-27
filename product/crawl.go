@@ -4,10 +4,13 @@ import (
 	"fmt"
 	"strings"
 
+	"encore.dev/metrics"
 	"github.com/gocolly/colly"
 )
 
 const urlProductTrainings = "https://thinkport.digital/cloud-trainings-workshops/"
+
+var RequestsMade = metrics.NewCounter[uint64]("request_member", metrics.CounterConfig{})
 
 // Returns an array of Trainings crawled from a website
 func getTrainings() []TrainingStruct {
@@ -38,6 +41,7 @@ func getTrainings() []TrainingStruct {
 
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting", r.URL)
+		RequestsMade.Increment()
 	})
 
 	var err = c.Visit(urlProductTrainings)

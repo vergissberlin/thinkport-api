@@ -3,10 +3,13 @@ package member
 import (
 	"fmt"
 
+	"encore.dev/metrics"
 	"github.com/gocolly/colly"
 )
 
 const urlMembers = "https://thinkport.digital/thinkport-cloud-experten-uber-uns/"
+
+var RequestsMade = metrics.NewCounter[uint64]("request_member", metrics.CounterConfig{})
 
 // Returns an array of Members crawled from a website
 func getMembers() []MemberStruct {
@@ -38,6 +41,7 @@ func getMembers() []MemberStruct {
 
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting", r.URL)
+		RequestsMade.Increment()
 	})
 
 	c.Visit(urlMembers)
