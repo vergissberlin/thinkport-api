@@ -1,3 +1,5 @@
 {
-	"id": "helloworld-5w4i",
+	"id": "thinkport-api",
+    "name": "Thinkport API",
+    "description": "Thinkport API description",
 }
