@@ -37,7 +37,7 @@ func init() {
 
 // Returns all trainings sorted by name
 // encore:api public path=/product/trainings method=GET
-func Trainings(ctx context.Context) *TrainingListResponse {
+func Trainings(ctx context.Context) (*TrainingListResponse, error) {
 	msg := &TrainingListResponse{Trainings: make([]TrainingStruct, 0, len(trainings))}
 	for _, training := range trainings {
 		msg.Trainings = append(msg.Trainings, training)
@@ -46,7 +46,7 @@ func Trainings(ctx context.Context) *TrainingListResponse {
 	// Sort trainings by name
 	msg.Trainings = sortTrainings(msg.Trainings)
 
-	return msg
+	return msg, nil
 }
 
 // Returns a training
