@@ -7,8 +7,9 @@ import (
 
 type MemberStruct struct {
 	Name     string `json:"name"`
+	Surname  string `json:"surname"`
 	Position string `json:"position"`
-	Details string `json:"details"`
+	Details  string `json:"details"`
 	Email    string `json:"email"`
 	Linkedin string `json:"linkedin"`
 }
@@ -65,4 +66,22 @@ func Member(ctx context.Context, name string) (*SingleResponse, error) {
 	// Return empty member if not found
 	msg := &SingleResponse{Member: MemberStruct{}}
 	return msg, nil
+}
+
+// Extract surname from email
+// e.g. jdoe@ -> Doe
+func extractSurnameFromEmail(email string) string {
+	// Return empty string if email is empty
+	if len(email) == 0 {
+		return ""
+	}
+	// Extract string after  the first char before @
+	surname := strings.Split(email, "@")[0]
+	// Remove first char
+	surname = surname[1:]
+
+	// Capitalize first letter
+	surname = strings.ToUpper(surname[0:1]) + surname[1:]
+
+	return surname
 }
