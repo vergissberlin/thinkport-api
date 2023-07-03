@@ -22,10 +22,6 @@ type ListResponse struct {
 	Members []MemberStruct `json:"members"`
 }
 
-type SingleResponse struct {
-	Member MemberStruct `json:"member"`
-}
-
 var members map[string]MemberStruct
 
 func init() {
@@ -50,22 +46,16 @@ func Members(ctx context.Context) (*ListResponse, error) {
 	return msg, nil
 }
 
-// Returns a member
+// Returns a MemberStruct
 // encore:api public path=/member/:name method=GET
-func Member(ctx context.Context, name string) (*SingleResponse, error) {
-
-	// Lowercase name parameter
-	name = strings.ToLower(name)
-
-	// Lookup member directly in members map
-	if member, ok := members[name]; ok {
-		msg := &SingleResponse{Member: member}
-		return msg, nil
+func Member(ctx context.Context, name string) (*MemberStruct, error) {
+	// Find member by name
+	member, ok := members[strings.ToLower(name)]
+	if !ok {
+		return nil, nil
 	}
 
-	// Return empty member if not found
-	msg := &SingleResponse{Member: MemberStruct{}}
-	return msg, nil
+	return &member, nil
 }
 
 // Extract surname from email

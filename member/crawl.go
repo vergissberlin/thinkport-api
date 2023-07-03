@@ -40,7 +40,7 @@ func getMembers() []MemberStruct {
 				Position: e.ChildText(".lae-team-member-position"),
 				Details:  e.ChildText(".lae-team-member-details"),
 				Email:    mail,
-				Linkedin: e.ChildAttr("a[href^=https://www.linkedin.com]", "href"),
+				Linkedin: e.ChildAttr(".lae-linkedin", "href"),
 			}
 		}
 	})

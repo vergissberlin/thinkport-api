@@ -32,7 +32,6 @@ func init() {
 	for _, training := range getTrainings() {
 		trainings[strings.ToLower(training.Name)] = training
 	}
-
 }
 
 // Returns all trainings sorted by name
