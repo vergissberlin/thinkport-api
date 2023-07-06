@@ -11,6 +11,7 @@ type MemberStruct struct {
 	Position string `json:"position"`
 	Details  string `json:"details"`
 	Email    string `json:"email"`
+	Avatar   string `json:"avatar"`
 	Linkedin string `json:"linkedin"`
 }
 
