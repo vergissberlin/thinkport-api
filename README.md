@@ -6,6 +6,7 @@ Get data from Thinkport GmbH, Germany. It includes the following services:
 | --- | --- | --- |
 | Members | array | <https://api.thinkport.andrelademann.de/members> |
 | Member | object | <https://api.thinkport.andrelademann.de/member/Alice> |
+| Product - Trainings | array | <https://api.thinkport.andrelademann.de/product/trainings> |
 | Locations | array | <https://api.thinkport.andrelademann.de/about/locations> |
 
 ## Usage
@@ -27,6 +28,7 @@ CURL:
 
 ```bash
 curl https://api.thinkport.andrelademann.de/members
+curl https://api.thinkport.andrelademann.de/product/trainings
 ```
 
 ## Contributing
