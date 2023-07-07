@@ -23,7 +23,7 @@ axios.get('https://api.thinkport.andrelademann.de/members')
     });
 ```
 
-CURL
+CURL:
 
 ```bash
 curl https://api.thinkport.andrelademann.de/members
@@ -41,4 +41,4 @@ git push origin main
 
 ## License
 
-MIT
+[MIT](LICENSE)
