@@ -64,18 +64,6 @@ func MembersCount(ctx context.Context) (MembersCountStruct, error) {
 	return MembersCountStruct{Count: count, Engineers: engineerCount}, nil
 }
 
-// Returns the count of engineers
-// encore:api public path=/members/count/engineers method=GET
-func EngineerCount(ctx context.Context) (int, error) {
-	engineerCount := 0
-	for _, member := range members {
-		if strings.Contains(member.Position, "Engineer") {
-			engineerCount += 1
-		}
-	}
-	return engineerCount, nil
-}
-
 // Returns a MemberStruct
 // encore:api public path=/member/:name method=GET
 func Member(ctx context.Context, name string) (*MemberStruct, error) {
