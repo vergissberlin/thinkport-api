@@ -5,6 +5,8 @@ Get data from Thinkport GmbH, Germany. It includes the following services:
 | Service | Type |  URL |
 | --- | --- | --- |
 | Members | array | <https://api.thinkport.andrelademann.de/members> |
+| Members count | number | <https://api.thinkport.andrelademann.de/members/count> |
+| Members count engineers | number | <https://api.thinkport.andrelademann.de/members/count/engineers> |
 | Member | object | <https://api.thinkport.andrelademann.de/member/Alice> |
 | Product - Trainings | array | <https://api.thinkport.andrelademann.de/product/trainings> |
 | Locations | array | <https://api.thinkport.andrelademann.de/about/locations> |

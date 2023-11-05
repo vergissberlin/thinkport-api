@@ -47,6 +47,24 @@ func Members(ctx context.Context) (*ListResponse, error) {
 	return msg, nil
 }
 
+// Returns the count of members
+// encore:api public path=/members/count method=GET
+func MemberCount(ctx context.Context) (int, error) {
+	return len(members), nil
+}
+
+// Returns the count of engineers
+// encore:api public path=/members/count/engineers method=GET
+func EngineerCount(ctx context.Context) (int, error) {
+	engineerCount := 0
+	for _, member := range members {
+		if strings.Contains(member.Position, "Engineer") {
+			engineerCount += 1
+		}
+	}
+	return engineerCount, nil
+}
+
 // Returns a MemberStruct
 // encore:api public path=/member/:name method=GET
 func Member(ctx context.Context, name string) (*MemberStruct, error) {
