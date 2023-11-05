@@ -20,8 +20,11 @@ type MembersStruct struct {
 }
 
 type MembersCountStruct struct {
-	Count     int `json:"count"`
-	Engineers int `json:"engineers"`
+	Count      int `json:"count"`
+	Architects int `json:"architects"`
+	Developers int `json:"developers"`
+	Engineers  int `json:"engineers"`
+	Managers   int `json:"managers"`
 }
 
 type ListResponse struct {
@@ -55,13 +58,31 @@ func Members(ctx context.Context) (*ListResponse, error) {
 // encore:api public path=/members/count method=GET
 func MembersCount(ctx context.Context) (MembersCountStruct, error) {
 	count := len(members)
+	architectCount := 0
+	developerCount := 0
 	engineerCount := 0
+	managerCount := 0
 	for _, member := range members {
+		if strings.Contains(member.Position, "Architect") {
+			architectCount += 1
+		}
+		if strings.Contains(member.Position, "Developer") {
+			developerCount += 1
+		}
 		if strings.Contains(member.Position, "Engineer") {
 			engineerCount += 1
 		}
+		if strings.Contains(member.Position, "Manager") {
+			managerCount += 1
+		}
 	}
-	return MembersCountStruct{Count: count, Engineers: engineerCount}, nil
+	return MembersCountStruct{
+		Count:      count,
+		Architects: architectCount,
+		Developers: developerCount,
+		Engineers:  engineerCount,
+		Managers:   managerCount,
+	}, nil
 }
 
 // Returns a MemberStruct
