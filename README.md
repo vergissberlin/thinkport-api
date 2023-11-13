@@ -11,11 +11,11 @@ Get data from Thinkport GmbH, Germany. It includes the following services:
 | Product - Trainings | array | <https://api.thinkport.andrelademann.de/product/trainings> |
 | Locations | array | <https://api.thinkport.andrelademann.de/about/locations> |
 
-## Usage
+## Usage examples
 
 ### Members
 
-JavaScript with axios:
+#### Example with JavaScript
 
 ```javascript
 const axios = require('axios');
@@ -26,7 +26,7 @@ axios.get('https://api.thinkport.andrelademann.de/members')
     });
 ```
 
-CURL:
+#### Example with CURL
 
 ```bash
 curl https://api.thinkport.andrelademann.de/members
