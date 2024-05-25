@@ -12,3 +12,7 @@
 !/go.mod
 !/go.sum
 !/README.md
+encore.gen.go
+encore.gen.cue
+/.encore
+/encore.gen

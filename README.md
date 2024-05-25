@@ -43,6 +43,12 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 git push origin main
 ```
 
+## Development
+
+```bash
+encore run
+```
+
 ## License
 
 [MIT](LICENSE)
