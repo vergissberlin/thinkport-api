@@ -4,12 +4,12 @@ Get data from Thinkport GmbH, Germany. It includes the following services:
 
 | Service | Type |  URL |
 | --- | --- | --- |
-| Members | array | <https://api.thinkport.andrelademann.de/members> |
-| Members count | number | <https://api.thinkport.andrelademann.de/members/count> |
-| Members count engineers | number | <https://api.thinkport.andrelademann.de/members/count/engineers> |
-| Member | object | <https://api.thinkport.andrelademann.de/member/Alice> |
-| Product - Trainings | array | <https://api.thinkport.andrelademann.de/product/trainings> |
-| Locations | array | <https://api.thinkport.andrelademann.de/about/locations> |
+| Members | array | <https://production-helloworld-5w4i.encr.app/members> |
+| Members count | number | <https://production-helloworld-5w4i.encr.app/members/count> |
+| Members count engineers | number | <https://production-helloworld-5w4i.encr.app/members/count/engineers> |
+| Member | object | <https://production-helloworld-5w4i.encr.app/member/Alice> |
+| Product - Trainings | array | <https://production-helloworld-5w4i.encr.app/product/trainings> |
+| Locations | array | <https://production-helloworld-5w4i.encr.app/about/locations> |
 
 ## Usage examples
 
@@ -20,7 +20,7 @@ Get data from Thinkport GmbH, Germany. It includes the following services:
 ```javascript
 const axios = require('axios');
 
-axios.get('https://api.thinkport.andrelademann.de/members')
+axios.get('https://production-helloworld-5w4i.encr.app/members')
     .then((response) => {
         console.log(response.data);
     });
@@ -29,8 +29,8 @@ axios.get('https://api.thinkport.andrelademann.de/members')
 #### Example with CURL
 
 ```bash
-curl https://api.thinkport.andrelademann.de/members
-curl https://api.thinkport.andrelademann.de/product/trainings
+curl https://production-helloworld-5w4i.encr.app/members
+curl https://production-helloworld-5w4i.encr.app/product/trainings
 ```
 
 ## Contributing
