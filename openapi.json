@@ -306,6 +306,10 @@
     {
       "description": "Encore local dev environment",
       "url": "http://localhost:4000"
+    },
+    {
+      "description": "Encore production environment",
+      "url": "https://production-helloworld-5w4i.encr.app"
     }
   ]
 }
