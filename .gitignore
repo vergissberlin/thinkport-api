@@ -11,7 +11,10 @@
 !/encore.app
 !/go.mod
 !/go.sum
+!/LICENSE
+!/openapi.json
 !/README.md
+
 encore.gen.go
 encore.gen.cue
 /.encore
