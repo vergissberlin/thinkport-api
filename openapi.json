@@ -253,6 +253,16 @@
                       "type": "array"
                     }
                   },
+                  "example": {
+                    "trainings": [
+                      {
+                        "category": "aws",
+                        "description": "Learn more about Cloud in AWS",
+                        "link": "https://thinkport.digital/learn/aws",
+                        "name": "Cloud Training AWS"
+                      }
+                    ]
+                  },
                   "required": [
                     "trainings"
                   ],
