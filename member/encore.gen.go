@@ -20,5 +20,5 @@ type Interface interface {
 	MembersCount(ctx context.Context) (MembersCountStruct, error)
 
 	// Returns a MemberStruct
-	Member(ctx context.Context, name string) (*MemberStruct, error)
+	Member(ctx context.Context, hash string) (*MemberStruct, error)
 }

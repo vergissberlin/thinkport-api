@@ -6,6 +6,7 @@ import (
 )
 
 type MemberStruct struct {
+	Hash     string `json:"hash"`
 	Name     string `json:"name"`
 	Position string `json:"position"`
 	Avatar   string `json:"avatar"`
@@ -33,7 +34,11 @@ var members map[string]MemberStruct
 func init() {
 	members = make(map[string]MemberStruct)
 	for _, member := range getMembers() {
-		members[strings.ToLower(member.Name)] = member
+		// generate hash of name and position
+		// to avoid duplicates
+		hash := hashMember(member)
+		members[hash] = member
+
 	}
 }
 
@@ -69,7 +74,7 @@ func MembersCount(ctx context.Context) (MembersCountStruct, error) {
 		if strings.Contains(member.Position, "Engineer") {
 			engineerCount += 1
 		}
-		if strings.Contains(member.Position, "Manager") {
+		if strings.Contains(member.Position, "Manager") || strings.Contains(member.Position, "CEO") {
 			managerCount += 1
 		}
 	}
@@ -83,10 +88,9 @@ func MembersCount(ctx context.Context) (MembersCountStruct, error) {
 }
 
 // Returns a MemberStruct
-// encore:api public path=/member/:name method=GET
-func Member(ctx context.Context, name string) (*MemberStruct, error) {
-	// Find member by name
-	member, ok := members[strings.ToLower(name)]
+// encore:api public path=/member/:hash method=GET
+func Member(ctx context.Context, hash string) (*MemberStruct, error) {
+	member, ok := members[hash]
 	if !ok {
 		return nil, nil
 	}

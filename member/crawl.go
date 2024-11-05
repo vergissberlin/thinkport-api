@@ -29,12 +29,9 @@ func getMembers() []MemberStruct {
 		memberCount++
 
 		if e.ChildText(".lae-title") != "" {
-			mail := e.ChildAttr("a[href^=mailto]", "href")
-			if len(mail) > 0 {
-				mail = mail[7:]
-			}
 			// Append member to slice of members if not empty
-			m[e.ChildText(".lae-title")] = MemberStruct{
+			m[e.ChildText(".lae-title")+"."+e.ChildText(".lae-team-member-position")] = MemberStruct{
+				Hash:     hashMember(MemberStruct{Name: e.ChildText(".lae-title"), Position: e.ChildText(".lae-team-member-position"), Avatar: e.ChildAttr(".lae-image", "src")}),
 				Name:     e.ChildText(".lae-title"),
 				Position: e.ChildText(".lae-team-member-position"),
 				Avatar:   e.ChildAttr(".lae-image", "src"),

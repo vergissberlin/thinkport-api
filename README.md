@@ -2,14 +2,14 @@
 
 Get data from Thinkport GmbH, Germany. It includes the following services:
 
-| Service | Type |  URL |
-| --- | --- | --- |
-| Members | array | <https://production-helloworld-5w4i.encr.app/members> |
-| Members count | number | <https://production-helloworld-5w4i.encr.app/members/count> |
+| Service                 | Type   | URL                                                                   |
+|-------------------------|--------|-----------------------------------------------------------------------|
+| Members                 | array  | <https://production-helloworld-5w4i.encr.app/members>                 |
+| Members count           | number | <https://production-helloworld-5w4i.encr.app/members/count>           |
 | Members count engineers | number | <https://production-helloworld-5w4i.encr.app/members/count/engineers> |
-| Member | object | <https://production-helloworld-5w4i.encr.app/member/Alice> |
-| Product - Trainings | array | <https://production-helloworld-5w4i.encr.app/product/trainings> |
-| Locations | array | <https://production-helloworld-5w4i.encr.app/about/locations> |
+| Member                  | object | <https://production-helloworld-5w4i.encr.app/member/Alice>            |
+| Product - Trainings     | array  | <https://production-helloworld-5w4i.encr.app/product/trainings>       |
+| Locations               | array  | <https://production-helloworld-5w4i.encr.app/about/locations>         |
 
 ## Usage examples
 

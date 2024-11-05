@@ -1,5 +1,10 @@
 package member
 
+import (
+	"crypto/sha256"
+	"encoding/hex"
+)
+
 // Function to sort members by name
 //
 //	sortMembers sorts a slice of MemberStruct by name using quicksort.
@@ -40,4 +45,11 @@ func partition(members []MemberStruct, left, right int) int {
 	members[i+1] = members[right]
 	members[right] = temp
 	return i + 1
+}
+
+// Returns a sorted array of members
+func hashMember(member MemberStruct) string {
+	hash := sha256.New()
+	hash.Write([]byte(member.Name + member.Position + member.Avatar))
+	return hex.EncodeToString(hash.Sum(nil))
 }
