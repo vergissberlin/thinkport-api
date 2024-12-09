@@ -1,25 +1,22 @@
-# Production
+# Staging
 
 ## Members
 
 ### GET members
-https://production-helloworld-5w4i.encr.app/members
-
-### GET Members count
-https://production-helloworld-5w4i.encr.app/members/count
+https://staging-helloworld-5w4i.encr.app/members
 
 ### GET Member
-https://production-helloworld-5w4i.encr.app/member/1
+https://staging-helloworld-5w4i.encr.app/member/1
 
 ## Products
 
 ### GET product trainings
-https://production-helloworld-5w4i.encr.app/product/trainings
+https://staging-helloworld-5w4i.encr.app/product/trainings
 
 ### GET product training
-https://production-helloworld-5w4i.encr.app/product/training/Hybrid Cloud Strategie
+https://staging-helloworld-5w4i.encr.app/product/training/Hybrid Cloud Strategie
 
 ## Locations
 
 ### GET locations
-https://production-helloworld-5w4i.encr.app/about/locations
+https://staging-helloworld-5w4i.encr.app/about/locations

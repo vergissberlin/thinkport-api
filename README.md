@@ -11,6 +11,9 @@ Get data from Thinkport GmbH, Germany. It includes the following services:
 | Product - Trainings     | array  | <https://production-helloworld-5w4i.encr.app/product/trainings>       |
 | Locations               | array  | <https://production-helloworld-5w4i.encr.app/about/locations>         |
 
+More request examples can be found in the 
+[docs/requests/Production.http](docs/requests/Production.http).
+
 ## Usage examples
 
 ### Members
@@ -47,6 +50,12 @@ git push origin main
 
 ```bash
 encore run
+```
+
+### Testing
+
+```bash
+encore test
 ```
 
 ## License
