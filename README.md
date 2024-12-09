@@ -40,7 +40,7 @@ curl https://production-helloworld-5w4i.encr.app/product/trainings
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## Deplyoment
+## Deployment
 
 ```bash
 git push origin main
