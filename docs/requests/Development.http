@@ -3,20 +3,28 @@
 ## Members
 
 ### GET members
-https://staging-helloworld-5w4i.encr.app/members
+http://127.0.0.1:4000/members
 
 ### GET Member
-https://staging-helloworld-5w4i.encr.app/member/1
+http://127.0.0.1:4000/member/1
+
+### GET Members count
+http://127.0.0.1:4000/members/count
 
 ## Products
 
 ### GET product trainings
-https://staging-helloworld-5w4i.encr.app/product/trainings
+http://127.0.0.1:4000/product/trainings
 
 ### GET product training
-https://staging-helloworld-5w4i.encr.app/product/training/Hybrid Cloud Strategie
+http://127.0.0.1:4000/product/training/Hybrid Cloud Strategie
 
 ## Locations
 
 ### GET locations
-https://staging-helloworld-5w4i.encr.app/about/locations
+http://127.0.0.1:4000/about/locations
+
+## Carriers
+
+### GET careers
+http://localhost:4000/careers
