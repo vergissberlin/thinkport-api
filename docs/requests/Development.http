@@ -1,0 +1,22 @@
+# Staging
+
+## Members
+
+### GET members
+https://staging-helloworld-5w4i.encr.app/members
+
+### GET Member
+https://staging-helloworld-5w4i.encr.app/member/1
+
+## Products
+
+### GET product trainings
+https://staging-helloworld-5w4i.encr.app/product/trainings
+
+### GET product training
+https://staging-helloworld-5w4i.encr.app/product/training/Hybrid Cloud Strategie
+
+## Locations
+
+### GET locations
+https://staging-helloworld-5w4i.encr.app/about/locations
