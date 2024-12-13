@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        env:
-          ENCORE_INSTALL: '/home/runner/.encore'
-          PATH: '$ENCORE_INSTALL/bin:$PATH'
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -28,10 +25,10 @@ jobs:
           curl -L https://encore.dev/install.sh | bash
 
       - name: Build
-        run: encore build docker thinkport-api:latest
+        run: /home/runner/.encore/bin/encore build docker thinkport-api:latest
 
       - name: Test
-        run: encore test
+        run: /home/runner/.encore/bin/encore test
         # run: go test -race -covermode=atomic -coverprofile coverage.out -v ./...
 
       - name: Upload coverage reports to Codecov
