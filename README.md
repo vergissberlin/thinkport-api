@@ -55,7 +55,7 @@ encore run
 ### Testing
 
 ```bash
-encore test
+encore test ./...
 ```
 
 ## License
