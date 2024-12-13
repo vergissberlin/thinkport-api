@@ -1,0 +1,44 @@
+meta {
+  name: getMembersCount
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://production-helloworld-5w4i.encr.app/members/count
+  body: none
+  auth: none
+}
+
+tests {
+  test("Response header type should be application/json", function() {
+    const contentType = res.getHeader("content-type");
+    expect(contentType).to.be.equal("application/json")
+  })
+  
+  test("Should have a count value", function() {
+    const data = res.getBody();
+    expect(data.count).to.be.not.null;
+  });
+  
+  test("Should have a architects value", function() {
+    const data = res.getBody();
+    expect(data.architects).to.be.not.null;
+  });
+  
+  test("Should have a developers value", function() {
+    const data = res.getBody();
+    expect(data.developers).to.be.not.null;
+  });
+  
+  test("Should have a engineers value", function() {
+    const data = res.getBody();
+    expect(data.engineers).to.be.not.null;
+  });
+  
+  test("Should have a managers value", function() {
+    const data = res.getBody();
+    expect(data.managers).to.be.not.null;
+  });
+  
+}

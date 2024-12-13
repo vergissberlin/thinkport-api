@@ -15,8 +15,12 @@
 !/LICENSE
 !/openapi.json
 !/README.md
+!/tests
 
 encore.gen.go
 encore.gen.cue
 /.encore
 /encore.gen
+/tests/*.xml
+/tests/*.html
+

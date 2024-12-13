@@ -1,0 +1,41 @@
+meta {
+  name: getTrainings
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://production-helloworld-5w4i.encr.app/product/trainings
+  body: none
+  auth: none
+}
+
+tests {
+  test("Response header type should be application/json", function() {
+    const contentType = res.getHeader("content-type");
+    expect(contentType).to.be.equal("application/json")
+  })
+  
+  test("Should include trainings", function() {
+    const data = res.getBody();
+    expect(data.trainings.length).to.be.not.null;
+  });
+  
+  test("Trainings should have an name value", function() {
+    const data = res.getBody();
+    expect(data.trainings.name).to.be.not.null;
+  });
+  test("Trainings should have an description value", function() {
+    const data = res.getBody();
+    expect(data.trainings.description).to.be.not.null;
+  });
+  test("Trainings should have an category value", function() {
+    const data = res.getBody();
+    expect(data.trainings.category).to.be.not.null;
+  });
+  test("Trainings should have an link value", function() {
+    const data = res.getBody();
+    expect(data.trainings.link).to.be.not.null;
+  });
+  
+}

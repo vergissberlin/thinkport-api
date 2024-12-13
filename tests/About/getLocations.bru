@@ -1,0 +1,34 @@
+meta {
+  name: getLocations
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://production-helloworld-5w4i.encr.app/about/locations
+  body: none
+  auth: none
+}
+
+tests {
+  test("Response header type should be application/json", function() {
+    const contentType = res.getHeader("content-type");
+    expect(contentType).to.be.equal("application/json")
+  })
+  
+  test("Should include locations", function() {
+    const data = res.getBody();
+    expect(data.locations.length).to.be.not.null;
+  });
+  
+  test("Location should have an comment value", function() {
+    const data = res.getBody();
+    expect(data.locations.comment).to.be.not.null;
+  });
+  
+  test("Location should have an address value", function() {
+    const data = res.getBody();
+    expect(data.locations.address).to.be.not.null;
+  });
+  
+}

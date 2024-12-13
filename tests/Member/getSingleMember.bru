@@ -1,0 +1,44 @@
+meta {
+  name: getSingleMember
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://production-helloworld-5w4i.encr.app/member/5b362461be5665cd22d3a18d7c9d75622ec149576bc5c281f799219b04f17a5f
+  body: none
+  auth: none
+}
+
+tests {
+  test("Response header type should be application/json", function() {
+    const contentType = res.getHeader("content-type");
+    expect(contentType).to.be.equal("application/json")
+  })
+  
+  test("Member should have an hash value", function() {
+    const data = res.getBody();
+    expect(data.hash).to.be.not.null;
+  });
+  
+  test("Member should have an name value", function() {
+    const data = res.getBody();
+    expect(data.name).to.be.not.null;
+  });
+  
+  test("Member should have an position value", function() {
+    const data = res.getBody();
+    expect(data.position).to.be.not.null;
+  });
+  
+  test("Member should have an avatar value", function() {
+    const data = res.getBody();
+    expect(data.avatar).to.be.not.null;
+  });
+  
+  test("Member should have an linkedin value", function() {
+    const data = res.getBody();
+    expect(data.linkedin).to.be.not.null;
+  });
+  
+}
