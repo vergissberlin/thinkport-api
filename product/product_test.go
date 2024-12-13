@@ -5,32 +5,78 @@ import (
 	"testing"
 )
 
-// Override init() to use test data
 func init() {
-	// Create test data of 3 trainings
-	trainings = make(map[string]TrainingStruct)
-	trainings["a"] = TrainingStruct{Name: "A"}
-	trainings["b"] = TrainingStruct{Name: "B"}
-	trainings["c"] = TrainingStruct{Name: "C"}
+	trainings = map[string]TrainingStruct{
+		"a": {Name: "A"},
+		"b": {Name: "B"},
+		"c": {Name: "C"},
+	}
 }
 
 func TestTrainings(t *testing.T) {
-
-	expected := []TrainingStruct{
-		{Name: "A"},
-		{Name: "B"},
-		{Name: "C"},
-	}
-
+	expected := []TrainingStruct{{Name: "A"}, {Name: "B"}, {Name: "C"}}
 	result, _ := Trainings(context.Background())
 
 	if len(result.Trainings) != len(expected) {
 		t.Errorf("Expected %d trainings, got %d", len(expected), len(result.Trainings))
 	}
 
-	for i := range result.Trainings {
-		if result.Trainings[i].Name != expected[i].Name {
-			t.Errorf("Expected training %d to be %s, got %s", i, expected[i].Name, result.Trainings[i].Name)
+	for i, training := range result.Trainings {
+		if training.Name != expected[i].Name {
+			t.Errorf("Expected training %d to be %s, got %s", i, expected[i].Name, training.Name)
+		}
+	}
+}
+
+func TestTrainingReturnsMatchingTrainings(t *testing.T) {
+	expected := []TrainingStruct{{Name: "A"}}
+	result, _ := Training(context.Background(), "a")
+
+	if len(result.Trainings) != len(expected) {
+		t.Errorf("Expected %d trainings, got %d", len(expected), len(result.Trainings))
+	}
+
+	for i, training := range result.Trainings {
+		if training.Name != expected[i].Name {
+			t.Errorf("Expected training %d to be %s, got %s", i, expected[i].Name, training.Name)
+		}
+	}
+}
+
+func TestTrainingReturnsEmptyWhenNoMatch(t *testing.T) {
+	result, _ := Training(context.Background(), "z")
+
+	if result != nil {
+		t.Errorf("Expected nil, got %v", result)
+	}
+}
+
+func TestTrainingHandlesCaseInsensitiveSearch(t *testing.T) {
+	expected := []TrainingStruct{{Name: "A"}}
+	result, _ := Training(context.Background(), "A")
+
+	if len(result.Trainings) != len(expected) {
+		t.Errorf("Expected %d trainings, got %d", len(expected), len(result.Trainings))
+	}
+
+	for i, training := range result.Trainings {
+		if training.Name != expected[i].Name {
+			t.Errorf("Expected training %d to be %s, got %s", i, expected[i].Name, training.Name)
+		}
+	}
+}
+
+func TestTrainingReturnsMultipleMatches(t *testing.T) {
+	expected := []TrainingStruct{{Name: "A"}, {Name: "B"}}
+	result, _ := Training(context.Background(), "a")
+
+	if len(result.Trainings) != len(expected) {
+		t.Errorf("Expected %d trainings, got %d", len(expected), len(result.Trainings))
+	}
+
+	for i, training := range result.Trainings {
+		if training.Name != expected[i].Name {
+			t.Errorf("Expected training %d to be %s, got %s", i, expected[i].Name, training.Name)
 		}
 	}
 }
