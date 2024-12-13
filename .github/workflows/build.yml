@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        env:
+          ENCORE_INSTALL: '/home/runner/.encore'
+          PATH: '$ENCORE_INSTALL/bin:$PATH'
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -21,7 +24,8 @@ jobs:
         run: go get golang.org/x/tools/cmd/cover
 
       - name: Install Encore
-        run: curl -L https://encore.dev/install.sh | bash
+        run: |
+          curl -L https://encore.dev/install.sh | bash
 
       - name: Build
         run: encore build docker thinkport-api:latest
